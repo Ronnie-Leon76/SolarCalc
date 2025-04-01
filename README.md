@@ -1,1 +1,1 @@
-### SolarCalc
+## SolarCalc
