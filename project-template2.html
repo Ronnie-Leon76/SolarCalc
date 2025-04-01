@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8" />
+	<title></title>
+	<style type="text/css">
+		*{
+			font-family: "quotefont";
+			font-size: 12px;
+		}
+		body{
+			margin: 10px;
+			}
+		@font-face {
+			font-family: "quotefont";
+			src:url("libs/dompdf/lib/fonts/OpenSans-Regular.ttf") format("truetype");
+			font-weight: normal
+		}@font-face {
+			font-family: "quotefont";
+			src:url("libs/dompdf/lib/fonts/OpenSans-Bold.ttf") format("truetype");
+			font-weight: bold
+		}@page{
+			margin: 30px;
+		}
+		.products-container img{
+			max-width: 100%;
+			height: auto;
+		}
+		.products-container table{
+			width: 100%;
+			border-right: solid 1px #ddd;
+			border-bottom: solid 1px #ddd;
+		}
+		.products-container table td{
+			border-top: solid 1px #ddd;
+			border-left: solid 1px #ddd;
+			font-size: 10px;
+			padding: 1px;
+			text-align: center;
+		}
+		.products-container table .highlight-row{
+			background: #ddd;
+		}
+
+		.irradiation-image, .output-image{
+			text-align: center;
+			padding: 10px;
+		}
+		.irradiation-image img, .output-image img{
+			width : 94%;
+			height: auto;
+		}
+	</style>
+</head>
+<body>
+	<div style="border: solid 1px #cccccc; padding: 10px;">
+		<table border="0" cellpadding="0" cellspacing="0" style="width: 100%; margin-top: 10px;">
+			<tr>
+				<td width="60%">
+					<img src="img/logos/SolarCalc-Report-Logo.png" alt="SolarCalc Solar Sizing">
+				</td>
+				<td style="width: 40%; text-align: right;">
+					<img src="img/logos/Report-Logo.jpg" class="img-fluid company-logo" alt="' .$company->company_name. '">
+					<ul>
+						<li style="list-style-type: none;"><strong>' .$company->company_name. '</strong></li>
+						<li style="list-style-type: none;">' .$company->physical_location. '</li>
+						<li style="list-style-type: none;">' .$company->postal_address. '</li>
+						<li style="list-style-type: none;">' .$company->company_phone. '</li>
+						<li style="list-style-type: none;">' .$company->company_email. '</li>
+						<li style="list-style-type: none;">' .$company->company_website. '</li>
+					</ul>
+				</td>
+			</tr>
+		</table>
+		<div style="border-bottom: solid 1px #eee; background: none; margin-bottom: 5px;"></div>
+		<table border="0" cellpadding="0" cellspacing="0" style="width: 100%">
+			<tr>
+				<td>
+					<ul style="display: block; margin: 0; padding: 5px 0;">
+						<li style="list-style-type: none; margin: 0;">' .$date. '</li>
+						<li style="list-style-type: none; margin: 0;">' .$project->project_name. '</li>
+						<li style="list-style-type: none; margin: 0;">' .$project->customer->customer_name. '</li>
+						<li style="list-style-type: none; margin: 0;">' .$project->location_name. '</li>
+						<li style="list-style-type: none; margin: 0;">' .$project->customer->customer_email. '</li>
+						<li style="list-style-type: none; margin: 0;">' .$project->customer->customer_telephone. '</li>
+						<li style="list-style-type: none; margin: 0;">' .$project->project_details->project_notes. '</li>
+					</ul>
+				</td>
+			</tr>
+		</table>
+		<div style="border-bottom: solid 1px #eee; background: none; margin-bottom: 10px; margin-top: 15px;"></div>
+		<table border="1" cellpadding="5" cellspacing="0" style="width: 100%; border-collapse: collapse; border: solid 1px #eee; border-color: #f1f1f1">
+			<tr>
+				<td colspan="10">
+					<h3 style="padding: 10px 0; margin: 0">Paramaters</h3>
+				</td>
+			</tr>
+			<tr>
+				<td>Location</td>
+				<td colspan="9">' .$project->project_details->pipe_length_details. '</td>
+			</tr>
+			<tr>
+				<td>Required Daily Output</td>
+				<td>' .$project->project_details->pipe_length_details. '</td>
+				<td>Pipe Type</td>
+				<td>' .$project->project_details->pipe_length_details. '</td>
+				<td>Motor Cable</td>
+				<td>' .$project->project_details->pipe_length_details. '</td>
+				<td>Pipe Length & Inner Diameter</td>
+				<td>' .$project->project_details->pipe_length_details. '</td>
+				<td>Head</td>
+				<td>' .$project->project_details->pipe_length_details. '</td>
+			</tr>
+		</table>
+		<br/>
+		<table border="1" cellpadding="5" cellspacing="0" style="width: 100%; border-collapse: collapse; border: solid 1px #eee; border-color: #f1f1f1">
+			<tr>
+				<td style="width: 40%">
+					<strong>Product</strong>
+				</td>
+				<td style="width: 10%; text-align: center;">
+					<strong>Quantity</strong>
+				</td>
+				<td style="width: 50%">
+					<strong>Details</strong>
+				</td>
+			</tr>
+			<tr>
+				<td style="width: 40%"><strong>Pump</strong> - ' .$solution[0]. '</td>
+				<td style="width: 10%; text-align: center;">1</td>
+				<td style="width: 50%"></td>
+			</tr>
+			<tr>
+				<td style="width: 40%"><strong>Inverter</strong> - ' .$solution[2]. '</td>
+				<td style="width: 10%; text-align: center;">' .$solution[4]. '</td>
+				<td style="width: 50%"></td>
+			</tr>
+			<tr>
+				<td style="width: 40%"><strong>Panels</strong> - ' .$solution[2]. '</td>
+				<td style="width: 10%; text-align: center;">' .$solution[4]. '</td>
+				<td style="width: 50%"></td>
+			</tr>
+			<tr>
+				<td style="width: 40%"><strong>Motor Cable</strong></td>
+				<td colspan="2" style="width: 10%; text-align: left;">' .$solution[4]. '</td>
+			</tr>
+			<tr>
+				<td colspan="3" style="width: 10%; text-align: left;">Other Accessories</td>
+			</tr>
+			<tr>
+				<td style="width: 40%"><strong>Water Level Switch / Well Probe</strong></td>
+				<td colspan="2" style="width: 10%; text-align: left;">' .$solution[4]. '</td>
+			</tr>
+			<tr>
+				<td style="width: 40%"><strong>Water Level Sensor Cable</strong></td>
+				<td colspan="2" style="width: 10%; text-align: left;">' .$solution[4]. '</td>
+			</tr>
+			<tr>
+				<td style="width: 40%"><strong>PV Disconnect</strong></td>
+				<td colspan="2" style="width: 10%; text-align: left;">' .$solution[4]. '</td>
+			</tr>
+			<tr>
+				<td style="width: 40%"><strong>Earthrod c/w Clamp</strong></td>
+				<td colspan="2" style="width: 10%; text-align: left;">' .$solution[4]. '</td>
+			</tr>
+			<tr>
+				<td style="width: 40%"><strong>6mm2 DC Cable for Earthrod</strong></td>
+				<td colspan="2" style="width: 10%; text-align: left;">' .$solution[4]. '</td>
+			</tr>
+			<tr>
+				<td colspan="3">
+					<h3 style="padding: 10px 0; margin: 0">Daily output in average month - ' .$project->project_details->delivery_output. '</h3>
+				</td>
+			</tr>
+		</table>
+		<h2 style="padding: 15px 0; font-size: 15px; margin: 15px 0 0 0;">Monthly Irradiation Data</h2>
+		<div class="irradiation-image"><img src="' .$data->irradiation_img. '" /></div>
+		<table border="1" cellpadding="5" cellspacing="0" style="width: 100%; border-collapse: collapse; border: solid 1px #eee; border-color: #f1f1f1">
+			<tr>
+				<td rowspan="2" style="width: 20%; text-align: center;"><strong>Irradiation [kWh/m<sup>2</sup>]</strong></td>
+				<td style="text-align: center;">Jan</td>
+				<td style="text-align: center;">Feb</td>
+				<td style="text-align: center;">Mar</td>
+				<td style="text-align: center;">Apr</td>
+				<td style="text-align: center;">May</td>
+				<td style="text-align: center;">Jun</td>
+				<td style="text-align: center;">Jul</td>
+				<td style="text-align: center;">Aug</td>
+				<td style="text-align: center;">Sep</td>
+				<td style="text-align: center;">Oct</td>
+				<td style="text-align: center;">Nov</td>
+				<td style="text-align: center;">Dec</td>
+				<td style="text-align: center;">Avg</td>
+			</tr>
+			<tr>
+				<td style="text-align: center;">' .$item. '</td>
+				<td style="text-align: center;">' .$item. '</td>
+				<td style="text-align: center;">' .$item. '</td>
+				<td style="text-align: center;">' .$item. '</td>
+				<td style="text-align: center;">' .$item. '</td>
+				<td style="text-align: center;">' .$item. '</td>
+				<td style="text-align: center;">' .$item. '</td>
+				<td style="text-align: center;">' .$item. '</td>
+				<td style="text-align: center;">' .$item. '</td>
+				<td style="text-align: center;">' .$item. '</td>
+				<td style="text-align: center;">' .$item. '</td>
+				<td style="text-align: center;">' .$item. '</td>
+				<td style="text-align: center;">' .$item. '</td>
+			</tr>
+		</table>
+		<h2 style="padding: 15px 0; font-size: 15px; margin: 15px 0 0 0;">Monthly Output Data</h2>
+		<div class="output-image"><img src="' .$data->output_img. '" /></div>
+		<table border="1" cellpadding="5" cellspacing="0" style="width: 100%; border-collapse: collapse; border: solid 1px #eee; border-color: #f1f1f1">
+			<tr>
+				<td rowspan="2" style="width: 20%; text-align: center;"><strong>Output [m<sup>3</sup>/day]</strong></td>
+				<td style="text-align: center;">Jan</td>
+				<td style="text-align: center;">Feb</td>
+				<td style="text-align: center;">Mar</td>
+				<td style="text-align: center;">Apr</td>
+				<td style="text-align: center;">May</td>
+				<td style="text-align: center;">Jun</td>
+				<td style="text-align: center;">Jul</td>
+				<td style="text-align: center;">Aug</td>
+				<td style="text-align: center;">Sep</td>
+				<td style="text-align: center;">Oct</td>
+				<td style="text-align: center;">Nov</td>
+				<td style="text-align: center;">Dec</td>
+				<td style="text-align: center;">Avg</td>
+			</tr>
+			<tr>
+				<td style="text-align: center;">' .$item. '</td>
+				<td style="text-align: center;">' .$item. '</td>
+				<td style="text-align: center;">' .$item. '</td>
+				<td style="text-align: center;">' .$item. '</td>
+				<td style="text-align: center;">' .$item. '</td>
+				<td style="text-align: center;">' .$item. '</td>
+				<td style="text-align: center;">' .$item. '</td>
+				<td style="text-align: center;">' .$item. '</td>
+				<td style="text-align: center;">' .$item. '</td>
+				<td style="text-align: center;">' .$item. '</td>
+				<td style="text-align: center;">' .$item. '</td>
+				<td style="text-align: center;">' .$item. '</td>
+				<td style="text-align: center;">' .$item. '</td>
+			</tr>
+		</table>
+		<h2 style="padding: 15px 0; font-size: 15px; margin: 15px 0 0 0;">Pump & System Curves</h2>
+		<div class="output-image"><img src="' .$data->output_img. '" /></div>
+		<div class="output-image"><img src="' .$data->output_img. '" /></div>
+		<div class="products-container">' .$data->pump_content. '</div>
+		<div class="products-container">' .$data->inverter_content. '</div>
+		<div class="products-container">' .$data->panels_content. '</div>
+		<h2 style="padding: 15px 0; font-size: 15px; margin: 15px 0 0 0;">Wiring Diagram</h2>
+		<div class="output-image"><img src="' .$data->output_img. '" /></div>
+	</div>
+</body>
+</html>

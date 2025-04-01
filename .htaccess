@@ -1,0 +1,7 @@
+#
+#Remove .php extension
+#remove php file extension-e.g. https://davisandshirtliff.com/file.php will become https://davisandshirtliff.com/file
+RewriteEngine on 
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}\.php -f
+RewriteRule ^(.*)$ $1.php [NC,L]
